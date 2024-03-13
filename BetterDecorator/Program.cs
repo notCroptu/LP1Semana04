@@ -27,13 +27,33 @@ namespace BetterDecorator
             }
             return finalString;
         }
+        /// <summary>
+        /// This is the decor in case the user does not specify arguments
+        /// </summary>
+        /// <returns>returns the result of a Decor with 3 arguments that says "User did not specify args"</returns>
+        private static string Decor()
+        {
+            return Decor("User did not specify args !", Convert.ToChar("="), 3);
+        }
+
         /// <summary> 
-        /// This main receives the arguments from the dotnet run command and then gives it to the Decor function in WriteLine.
+        /// This main receives the arguments from the dotnet run command, checks if there are more than 0, and then gives them to a string, char, int variables. and then gives it to the Decor function in WriteLine.
         /// </summary>
         /// <param name="args">Should receive: a string, a char, an int</param>
         static void Main(string[] args)
         {
-            Console.WriteLine(Decor(args[0], Convert.ToChar(args[1]), Convert.ToInt32(args[2])));
+
+            if (args.Length > 0)
+            {
+                string line = args[0];
+                char charToRepeat = Convert.ToChar(args[1]);
+                int howMany = Convert.ToInt32(args[2]);
+                Console.WriteLine(Decor(line, charToRepeat, howMany));
+            }
+            else
+            {
+            Console.WriteLine(Decor());
+            }
         }
     }
 }
